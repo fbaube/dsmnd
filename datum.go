@@ -15,21 +15,21 @@ import "fmt"
 // Some use cases:
 //
 // An element of an enumeration (example: Language)
-//   - Fundatype: D_TEXT ("Text")
+//   - Fundatype: TEXT ("Text")
 //   - StorName: "EN", "FR"
 //   - DispName: "English", "French"
 //   - Description: "English (default USA)", "French (default France)"
 //
 // A database table:
-//   - e.g. TableSpec{D_TABL, "INB", "inbatch", "Batch import of files"}
-//   - Fundatype: D_TABL ("Tabl")
+//   - e.g. TableSpec{TABL, "INB", "inbatch", "Batch import of files"}
+//   - Fundatype: TABL ("Tabl")
 //   - StorName: "INB" (used as a prefix)
 //   - DispName: "inbatch" (used as-is in SQL)
 //   - Description: "Input batch of imported files"
 //
 // A database column:
-//   - e.g. ColumnSpec{D_TEXT, "relfp", "Rel. path", "Rel.FP (from CLI)"}
-//   - Fundatype: D_PKEY ("pkey")
+//   - e.g. ColumnSpec{TEXT, "relfp", "Rel. path", "Rel.FP (from CLI)"}
+//   - Fundatype: PKEY ("pkey")
 //   - StorName: "relfp"
 //   - DispName: "Rel. path"
 //   - Description: "Rel.FP (from CLI)"
