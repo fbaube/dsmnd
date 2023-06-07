@@ -8,28 +8,28 @@ import "fmt"
 // It can be used to describe any of the following:
 //   - A facet or enumeration
 //   - One value in a facet or enumeration
-//   - A DB table spec
+//   - A table spec in a database
 //   - A column spec in a DB table
-//   - A field valuein a Go struct
+//   - A field value in a Go struct
 //
 // Some use cases:
 //
 // An element of an enumeration (example: Language)
-//   - Fundatype: TEXT ("Text")
+//   - Fundatype: TEXT ("text")
 //   - StorName: "EN", "FR"
 //   - DispName: "English", "French"
 //   - Description: "English (default USA)", "French (default France)"
 //
 // A database table:
-//   - e.g. TableSpec{TABL, "INB", "inbatch", "Batch import of files"}
-//   - Fundatype: TABL ("Tabl")
-//   - StorName: "INB" (used as a prefix)
-//   - DispName: "inbatch" (used as-is in SQL)
+//   - e.g. TableSpec{TABL, "inbatch", "INB", "Batch import of files"}
+//   - Fundatype: TABL ("tabl")
+//   - StorName: "inbatch" (in SQL "CREATE TABLE")
+//   - DispName: "inb" (when used as a prefix, e.g. "inb_idx"))
 //   - Description: "Input batch of imported files"
 //
 // A database column:
 //   - e.g. ColumnSpec{TEXT, "relfp", "Rel. path", "Rel.FP (from CLI)"}
-//   - Fundatype: PKEY ("pkey")
+//   - Fundatype: PKEY ("pkey") OOPS, PATH?
 //   - StorName: "relfp"
 //   - DispName: "Rel. path"
 //   - Description: "Rel.FP (from CLI)"
@@ -66,17 +66,21 @@ type Datum struct {
 	// but note that we have enhanced the list with some
 	// semantics, such as (for example) Primary Key.
 	Fundatype
-	// StorName is a short unique string token - no spaces or punctuation.
-	// We use string codes rather than iota-based integer values for
-	// robustness, because values based on iota could change.
-	//  1) When a Datum describes a DB column (or table or row's
-	//     column value or table!), StorName is the actual name of
-	//     the DB field or table, and should be all lower case.
-	//  2) When a Datum describes an enumeration, StorName should be
-	//     all upper case, and all value StorNames in a particular
-	//     enumeration "should" be of the same length.
+	// StorName is a short unique string token - no spaces
+	// or punctuation. For robustness we use string codes
+	// not iota-based integer values, because values based
+	// on iota could change.
+	//  1) When a Datum describes a DB item (table or column
+	//     or row's column value), StorName is the actual
+	//     name of the DB field or table, and should be all
+	//     lower case, and ideally all of the same length.
+	//  2) When a Datum describes an enumeration, StorName
+	//     should be all upper case, and all values of a
+	//     StorNames in a particular enumeration "should"
+	//     be of the same length.
 	StorName string
-	// DispName is for common use by users, such as for column headers.
+	// DispName is for common use by users when brief is
+	// better, such as for column headers.
 	DispName string
 	// Description is a long-form description.
 	Description string

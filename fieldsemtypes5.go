@@ -42,17 +42,17 @@ var FieldSemTypes = []FieldSemType{
 	// INTEGERS (5)
 	{INTG, "INTEG", "Integer", "Generic integer, size unspecified"},
 	{INTG, "BOOL_", "Boolean", "Boolean (0|1)"},
-	{INTG, "PRKEY", "Pri. key", "Primary table key (unique, non-NULL"},
-	{INTG, "FRKEY", "For. key", "Foreign table key"},
+	{INTG, "PRKEY", "Pri. key", "Primary table key (unique, non-NULL, int64"},
+	{INTG, "FRKEY", "For. key", "Foreign table key (int64)"},
 	{FLOT, "FLOAT", "Float", "Generic non-integer, size unspecified"},
 	// TEXTS (8)
 	{TEXT, "STRNG", "String", "Generic string, not text"},
-	{TEXT, "TOKEN", "Token", "Generic token (no spaces, punc.)"},
+	{TEXT, "TOKEN", "Token", "Generic token (no spaces or punc.)"},
 	{TEXT, "FTEXT", "Free text", "Generic free-flowing text"},
-	{TEXT, "MTEXT", "Markdown", "Markdown (or plain) text"},
+	{TEXT, "MTEXT", "Markdown", "Markdown (or plain) text, incl LwDITA MDITA"},
 	{TEXT, "JTEXT", "JSON", "JSON content"},
-	{TEXT, "XTEXT", "XML text", "XML text such as (Lw)DITA"},
-	{TEXT, "HTEXT", "HTML5 text", "HTML5 (or previous) text"},
+	{TEXT, "XTEXT", "XML text", "XML text such as LwDITA XDITA"},
+	{TEXT, "HTEXT", "HTML5 text", "HTML[5!] text, incl LwDITA HDITA"},
 	{TEXT, "MCFMT", "Microformat", "Microformat record"},
 	// TEXT-BASED MISC. (5)
 	{TEXT, "FONUM", "Phone nr.", "Telephone number"},

@@ -14,11 +14,12 @@ const (
 // specifies the (SQLite) type of a field.
 type Fundatype string
 
-// These [Fundatype]s (each FOUR characters)
-// expand on the SQLite fundamental types.
+// These [Fundatype]s expand on the SQLite fundamental types,
+// mainly by adding "pkey" and "fkey". Each symbol is four
+// upper case characters; each value is four lower-case.
 // But in any case see https://sqlite.org/c3ref/c_blob.html
 const (
-	TABL Fundatype = "Tabl" // This is describing a table !
+	TABL Fundatype = "tabl" // This datum describes a table !
 	//
 	INTG = "1234" // "INT"   // SQLITE_INTEGER 1
 	FLOT = "1.0f" // "FLOAT" // SQLITE_FLOAT   2
