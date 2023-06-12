@@ -6,10 +6,7 @@ const (
 	DB_SQLite DB_type = "sqlite"
 )
 
-// DbDescr is generic.
-// type DbDescr Datum
-
 // DbColInDb describes a column as-is in the DB (as obtained via
 // reflection), and has a slot to include the value (as a string).
 // Usd only in utils/repo/sqlite/meta_table.go
-type DbColInDb Datum // DbDescr
+type DbColInDb Datum

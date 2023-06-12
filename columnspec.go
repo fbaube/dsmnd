@@ -2,15 +2,19 @@ package dsmnd
 
 // ColumnSpec specifies a datum (i.e. a struct field and/or a
 // DB column), including its generic/portable/DB-independent
-// representation using the enumeration Datum.Fundatype).
-// Some values for common DB columns are defined in file
-// datadxnry.go . Field usage is as follows:
-//   - Fundatype: TEXT or INTG // TODO Replace w semantic
-//   - StorName: the field name IN THE DB
-//   - DispName: short description (FIXME: for FKEY, the name
-//     of the referenced DB table; also maybe the name of the
-//     referenced DB field, cos it might not be "ID")
-//   - Description: long description
+// representation using the enumeration [dsmnd.Fundatype].
+// It provides enough detail that DB operations can be based
+// onn it. Some values for common DB columns are defined in
+// file datadxnry.go . Field usage is as follows:
+//   - Fundatype: e.g. [db.TEXT], [db.INTG], [db.PKEY], [db.FKEY].
+//     TODO: Replace with semantic.
+//   - StorName: the field name IN THE DB.
+//     NOTE: For PKEY or FKEY, is this authoritative ? There
+//     could be multiple unique indices, so maybe it should be.
+//   - DispName: short description.
+//     NOTE: Exception: for FKEY, the name of the ref'd DB table.
+//   - Description: long description.
+//     NOTE: For FKEY, describe the purpose+function of the ref.
 //
 // ColumnSpec's are useful in three situations:
 //   - To generate CREATE TABLE statements
@@ -18,4 +22,4 @@ package dsmnd
 //   - To document fields when displaying them in a UI
 //
 // .
-type ColumnSpec Datum // DbDescr
+type ColumnSpec Datum
