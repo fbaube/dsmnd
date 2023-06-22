@@ -1,5 +1,7 @@
 package dsmnd
 
+import "fmt"
+
 // ColumnSpec specifies a datum (i.e. a struct field and/or a
 // DB column), including its generic/portable/DB-independent
 // representation using the enumeration [dsmnd.Fundatype].
@@ -23,3 +25,12 @@ package dsmnd
 //
 // .
 type ColumnSpec Datum
+
+func (p *ColumnSpec) String() string {
+	// fields are Fundatype, StorName, DispName, Description
+	if p == nil {
+		return "ϕ"
+	}
+	return fmt.Sprintf("%s:%s:%s:\"%s\"", p.Fundatype,
+		p.StorName, p.DispName, p.Description)
+}
