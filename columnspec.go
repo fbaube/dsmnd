@@ -31,6 +31,6 @@ func (p *ColumnSpec) String() string {
 	if p == nil {
 		return "ϕ"
 	}
-	return fmt.Sprintf("%s:%s:%s:\"%s\"", p.Fundatype,
+	return fmt.Sprintf("%s:%s:%s:\"%s\"", p.BaseDataType,
 		p.StorName, p.DispName, p.Description)
 }

@@ -2,20 +2,27 @@ package dsmnd
 
 import "fmt"
 
-// Datum is a datum descriptor that contains a storage name (for
-// persistence), a display name (for users), and a description.
+// When used as an enum node (ELIST) or value (ENUME), 
+// will need addition of namespace and isSet/hasKids. 
+
+// Datum is a datum descriptor that contains 
+// a storage name (for persistence), a short
+// display name (for users), and a description.
 //
 // It can be used to describe any of the following:
 //   - A facet or enumeration
 //   - One value in a facet or enumeration
-//   - A table spec in a database
-//   - A column spec in a DB table
+//   - An enumeration (set), or a higher node in a
+//     hierarchical structure of facets/enumerations
+//   - A table spec (schema) for a database
+//   - A table spec (schema) as present in a database
+//   - A column spec for a DB table
 //   - A field value in a Go struct
 //
-// Some use cases:
+// Some use cases (TODO: this needs revising): 
 //
 // An element of an enumeration (example: Language)
-//   - Fundatype: TEXT ("text")
+//   - BasicDataType: TEXT ("text")
 //   - StorName: "EN", "FR"
 //   - DispName: "English", "French"
 //   - Description: "English (default USA)", "French (default France)"
@@ -34,16 +41,17 @@ import "fmt"
 //   - DispName: "Rel. path"
 //   - Description: "Rel.FP (from CLI)"
 //
-// The Fundatype can be considered optional, but not other fields.
+// The BasicDataType can be considered optional, but not other fields.
 //
 // The following discussion (ref: https://www.sqlite.org/datatype3.html)
 // is mostly obsolete now, because we have expanded the set of permissible
-// values for Fundatype...
+// values for BasicDataType...
 //
 // The SQLite concepts "storage class" and "affinity" are quite similar.
 // The values for these are "INTEGER", "REAL", "NUMERIC, "TEXT", "BLOB".
-// It turns out that all of them are both classes/affinities AND specific
-// data types, so they are simple to use if we don't care about details.
+// (Note that primary and foreign keys are overloaded with "INTEGER").
+// It turns out that all of them are both classes/affinities AND ("mostly")
+// specific data types, so they are simple to use if we can ignore details.
 //
 // For purposes of comparison, note that the dataframe library "gota"
 // uses "string", "int", "float", "bool". We will not use a BOOL data
@@ -55,32 +63,31 @@ import "fmt"
 //
 // This all means that we can basically
 //  1. completely ignore SQLite NUMERIC, SQLite BLOB, and gota BOOL,
-//  2. declare every column to be either "INT" or "TEXT" (in Fundatype),
-//  3. be sure to use "INTEGER" when specifying a key (primary or foreign), and
+//  2. declare every column to be either "INTG" or "TEXT" (in BasicDataType),
+//  3. but use "INTEGER" (i.e. "KEYY") for a key (primary or foreign), and
 //  4. not worry about "mistakes" like assigning a BLOB (like an image file)
 //     to a TEXT column cos SQLite has got us covered.
-//
 // .
 type Datum struct {
-	// Fundatype can be an SQLite fundamental datatype,
-	// but note that we have enhanced the list with some
-	// semantics, such as (for example) Primary Key.
-	Fundatype
-	// StorName is a short unique string token - no spaces
-	// or punctuation. For robustness we use string codes
-	// not iota-based integer values, because values based
-	// on iota could change.
-	//  1) When a Datum describes a DB item (table or column
-	//     or row's column value), StorName is the actual
-	//     name of the DB field or table, and should be all
-	//     lower case, and ideally all of the same length.
-	//  2) When a Datum describes an enumeration, StorName
-	//     should be all upper case, and all values of a
-	//     StorNames in a particular enumeration "should"
-	//     be of the same length.
+	// BaseDataType is an SQLite fundamental datatype,
+	// enhanced with Primary Key and Foreign Key. 
+	// TODO: SemanticType (FUTURE).
+	BaseDataType
+	// StorName is a short unique string token - no 
+	// spaces or punctuation. For robustness we use 
+	// string codes not iota-based integer values, 
+	// because values based on iota could change.
+	//  1) When a Datum describes a DB item (table or 
+	//     column or row's column value), StorName is 
+	//     the actual name of the DB field or table, 
+	//     and should be all lower case
+	//  2) When a Datum describes an enumeration (set) 
+	//     or facet, StorName should be all upper case, 
+	//     and all values of a StorNames in a particular 
+	//     enumeration "should" be of the same length.
 	StorName string
-	// DispName is for common use by users when brief is
-	// better, such as for column headers.
+	// DispName is for common use by users when brief 
+	// is better, such as for column headers.
 	DispName string
 	// Description is a long-form description.
 	Description string
@@ -88,5 +95,5 @@ type Datum struct {
 
 func (d Datum) String() string {
 	return fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%s\"",
-		d.Fundatype, d.StorName, d.DispName, d.Description)
+		d.BaseDataType, d.StorName, d.DispName, d.Description)
 }
