@@ -29,14 +29,14 @@ import "fmt"
 //
 // A database table:
 //   - e.g. TableSpec{TABL, "inbatch", "INB", "Batch import of files"}
-//   - Fundatype: TABL ("tabl")
+//   - BasicDataType: TABL ("tabl")
 //   - StorName: "inbatch" (in SQL "CREATE TABLE")
 //   - DispName: "inb" (when used as a prefix, e.g. "inb_idx"))
 //   - Description: "Input batch of imported files"
 //
 // A database column:
 //   - e.g. ColumnSpec{TEXT, "relfp", "Rel. path", "Rel.FP (from CLI)"}
-//   - Fundatype: PKEY ("pkey") OOPS, PATH?
+//   - BasicDataType: PKEY ("pkey") OOPS, PATH?
 //   - StorName: "relfp"
 //   - DispName: "Rel. path"
 //   - Description: "Rel.FP (from CLI)"
@@ -69,10 +69,10 @@ import "fmt"
 //     to a TEXT column cos SQLite has got us covered.
 // .
 type Datum struct {
-	// BaseDataType is an SQLite fundamental datatype,
+	// BasicDatatype is an SQLite fundamental datatype,
 	// enhanced with Primary Key and Foreign Key. 
 	// TODO: SemanticType (FUTURE).
-	BaseDataType
+	BasicDatatype
 	// StorName is a short unique string token - no 
 	// spaces or punctuation. For robustness we use 
 	// string codes not iota-based integer values, 
@@ -95,5 +95,5 @@ type Datum struct {
 
 func (d Datum) String() string {
 	return fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%s\"",
-		d.BaseDataType, d.StorName, d.DispName, d.Description)
+		d.BasicDatatype, d.StorName, d.DispName, d.Description)
 }
