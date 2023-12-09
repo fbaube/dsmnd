@@ -4,11 +4,11 @@ import "fmt"
 
 // ColumnSpec specifies a datum (i.e. a struct field and/or a
 // DB column), including its generic/portable/DB-independent
-// representation using the enumeration [dsmnd.BasicDataType].
+// representation using the enumeration [dsmnd.BasicDatatype].
 // It provides enough detail that DB operations can be based
 // on it. Some values for common DB columns are defined in
 // file datadxnry.go . Field usage is as follows:
-//   - BasicDataType: e.g. [db.TEXT], [db.INTG], 
+//   - BasicDatatype: e.g. [db.TEXT], [db.INTG], 
 //     [db.PKEY], [db.FKEY]. TODO: Replace with semantic
 //     (i.e. SemanticFieldType, SemanticColxnType)
 //   - StorName: the field name IN THE DB.
@@ -28,7 +28,7 @@ import "fmt"
 type ColumnSpec Datum
 
 func (p *ColumnSpec) String() string {
-	// fields are BasicDataType, StorName, DispName, Description
+	// fields are BasicDatatype, StorName, DispName, Description
 	if p == nil {
 		return "ϕ"
 	}
