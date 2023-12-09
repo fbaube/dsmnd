@@ -45,6 +45,10 @@ BDT_OTHR = BasicDatatype("othr") // reserved: expansion
 BDT_NONE = BasicDatatype("none") // reserved 
 )
 
+func (bdt BasicDatatype) S() string {
+     return string(bdt)
+}
+
 // === SEMANTICS ===
 
 type SemanticType	string
