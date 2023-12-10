@@ -10,8 +10,21 @@ package dsmnd
 // .
 type SemanticFieldType SemanticType
 
+var sftMap map[SemanticFieldType]SemanticFieldDescriptor 
+
 func (sft SemanticFieldType) S() string {
      return string(sft)
+}
+
+func SemanticFieldDescriptorByType(sft SemanticFieldType) SemanticFieldDescriptor {
+    return sftMap[sft]
+}
+
+func init() {
+     sftMap = make(map[SemanticFieldType]SemanticFieldDescriptor)
+     for _, sftd := range SemanticFieldDescriptors {
+     	 sftMap[SemanticFieldType(sftd.StorName)] = sftd
+     }
 }
 
 const(
@@ -40,6 +53,11 @@ const(
         SFT_PRKEY = SemanticFieldType("prkey")
         SFT_FRKEY = SemanticFieldType("frkey")
         SFT_CXKEY = SemanticFieldType("cxkey")
+	SFT_DATE_ = SemanticFieldType("date_")
+	SFT_DDWWM = SemanticFieldType("ddwmm")
+	SFT_TIME_ = SemanticFieldType("time_")
+	SFT_SESON = SemanticFieldType("seson")
+	SFT_DYPRT = SemanticFieldType("dyprt")
 )
 
 // SemanticFieldDescriptor details the semantics of a simple field.
@@ -74,37 +92,37 @@ type SemanticFieldDescriptor SemanticDescriptor
 // .
 var SemanticFieldDescriptors = []SemanticFieldDescriptor{
 // ONE-OFFS (3) 
-{BDT_FLOT, "FLOAT", "Float", "Generic FP number, size unspecified"},
-{BDT_BLOB, "BLOB_", "Blob", "Binary large object (program / data"},
-{BDT_NULL, "NULL_", "Null", "Generic Not-a-value"}, 
+{BDT_FLOT, SFT_FLOAT.S(), "Float", "Generic FP number, size unspecified"},
+{BDT_BLOB, SFT_BLOB_.S(), "Blob", "Binary large object (program / data"},
+{BDT_NULL, SFT_NULL_.S(), "Null", "Generic Not-a-value"}, 
 // INTEGERS (2)
-{BDT_INTG, "INTEG", "Integer", "Generic integer, size unspecified"},
-{BDT_INTG, "BOOL_", "Boolean", "Boolean (0|1)"},
+{BDT_INTG, SFT_INTEG.S(), "Integer", "Generic integer, size unspecified"},
+{BDT_INTG, SFT_BOOL_.S(), "Boolean", "Boolean (0|1)"},
 // TEXTS (8)
-{BDT_TEXT, "STRNG", "String", "Generic string, not text"},
-{BDT_TEXT, "TOKEN", "Token", "Generic token (no spaces or punc.)"},
-{BDT_TEXT, "FTEXT", "Free-text", "Generic free-flowing text"},
-{BDT_TEXT, "MTEXT", "Markdown", "Markdown (or plain) text, incl LwDITA MDITA"},
-{BDT_TEXT, "JTEXT", "JSON", "JSON content"},
-{BDT_TEXT, "XTEXT", "XML-text", "XML text such as LwDITA XDITA"},
-{BDT_TEXT, "HTEXT", "HTML5-text", "HTML[5!] text, incl LwDITA HDITA"},
-{BDT_TEXT, "MCFMT", "Microformat", "Microformat record"},
+{BDT_TEXT, SFT_STRNG.S(), "String", "Generic string, not text"},
+{BDT_TEXT, SFT_TOKEN.S(), "Token", "Generic token (no spaces or punc.)"},
+{BDT_TEXT, SFT_FTEXT.S(), "Free-text", "Generic free-flowing text"},
+{BDT_TEXT, SFT_MTEXT.S(), "Markdown", "Markdown (or plain) text, incl LwDITA MDITA"},
+{BDT_TEXT, SFT_JTEXT.S(), "JSON", "JSON content"},
+{BDT_TEXT, SFT_XTEXT.S(), "XML-text", "XML text such as LwDITA XDITA"},
+{BDT_TEXT, SFT_HTEXT.S(), "HTML5-text", "HTML[5!] text, incl LwDITA HDITA"},
+{BDT_TEXT, SFT_MCFMT.S(), "Microformat", "Microformat record"},
 // TEXT-BASED MISC. (5)
-{BDT_TEXT, "FONUM", "Phone-nr.", "Telephone number"},
-{BDT_TEXT, "EMAIL", "Email", "Email address"},
-{BDT_TEXT, "URLIN", "URL/URI/URN", "Generic path ID (URL, URI, URN)"},
-{BDT_TEXT, "DATIM", "Date/Time", "Date and/or time (ISO-8601/RFC-3339)"},
-{BDT_TEXT, "SEMVR", "Sem.ver.nr.", "Semantic version number (x.y.z)"},
+{BDT_TEXT, SFT_FONUM.S(), "Phone-nr.", "Telephone number"},
+{BDT_TEXT, SFT_EMAIL.S(), "Email", "Email address"},
+{BDT_TEXT, SFT_URLIN.S(), "URL/URI/URN", "Generic path ID (URL, URI, URN)"},
+{BDT_TEXT, SFT_DATIM.S(), "Date/Time", "Date and/or time (ISO-8601/RFC-3339)"},
+{BDT_TEXT, SFT_SEMVR.S(), "Sem.ver.nr.", "Semantic version number (x.y.z)"},
 // KEYS (3)
-{BDT_KEYY, "PRKEY", "Pri.key", "Primary table key (unique, non-NULL, int64"},
-{BDT_KEYY, "FRKEY", "For.key", "Foreign table key (int64)"},
-{BDT_KEYY, "CXKEY", "Complex for.key", "Complex for.key (e.g. 1/n to other table)"}, 
+{BDT_KEYY, SFT_PRKEY.S(), "Pri.key", "Primary table key (unique, non-NULL, int64"},
+{BDT_KEYY, SFT_FRKEY.S(), "For.key", "Foreign table key (int64)"},
+{BDT_KEYY, SFT_CXKEY.S(), "Complex for.key", "Complex for.key (e.g. 1/n to other table)"}, 
 // DYTM/DATETIME (6)
-{BDT_DYTM, "DATE_", "Date", "Date only, no time"},
-{BDT_DYTM, "DDWWM", "TBD", "Day of week ? Week nr ? Month ?"},
-{BDT_DYTM, "DATIM", "Date & time", "Timestamp (day+time)"},
-{BDT_DYTM, "TIME_", "Time", "Time only, no date (recurring ?)"},
-{BDT_DYTM, "SESON", "Season", "Season (W S M F)"},
-{BDT_DYTM, "DYPRT", "Daypart", "Part ofo day (N M A E)"},
+{BDT_DYTM, SFT_DATE_.S(), "Date", "Date only, no time"},
+{BDT_DYTM, SFT_DDWWM.S(), "TBD", "Day of week ? Week nr ? Month ?"},
+{BDT_DYTM, SFT_DATIM.S(), "Date & time", "Timestamp (day+time)"},
+{BDT_DYTM, SFT_TIME_.S(), "Time", "Time only, no date (recurring ?)"},
+{BDT_DYTM, SFT_SESON.S(), "Season", "Season (W S M F)"},
+{BDT_DYTM, SFT_DYPRT.S(), "Daypart", "Part ofo day (N M A E)"},
 
 }

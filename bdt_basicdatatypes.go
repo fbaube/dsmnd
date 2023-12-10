@@ -1,5 +1,12 @@
 package dsmnd
 
+// === aside: Semantics (for uses, see other files s?t_*.go) ===
+
+type SemanticType	string
+type SemanticDescriptor Datum
+
+// === this file: Basic types ===
+
 // SqliteDatatype is one of the five basic ones defined
 // by & for SQLite, plus the addition of a date-time.
 // See https://sqlite.org/c3ref/c_blob.html
@@ -12,8 +19,8 @@ type SqliteDatatype int
 const(
 	SQLITE_INTEGER = SqliteDatatype(1) // 64-bit signed integer
 	SQLITE_FLOAT   = SqliteDatatype(2) // 64-bit IEEE FP number
-	SQLITE_TEXT    = SqliteDatatype(3) // string 
-	SQLITE_BLOB    = SqliteDatatype(4)
+	SQLITE_TEXT    = SqliteDatatype(3) // string; incl JSON 
+	SQLITE_BLOB    = SqliteDatatype(4) // incl JSONB 
 	SQLITE_NULL    = SqliteDatatype(5)
 	SQLYT_DATETIME = SqliteDatatype(6) // dusnt exist, but should 
 )
@@ -24,6 +31,9 @@ const(
 //  - Symbol names: "BDT_" + FOUR UPPER CASE letters
 //  - Symbol values: four lower case letters
 //  - Lists and Collections are included
+//
+// These are appropriate for describing DB schemas.
+// For more detail tho, use [SemFieldTypes]. 
 //
 // But in any case see https://sqlite.org/c3ref/c_blob.html
 // .
@@ -48,9 +58,4 @@ BDT_NONE = BasicDatatype("none") // reserved
 func (bdt BasicDatatype) S() string {
      return string(bdt)
 }
-
-// === SEMANTICS ===
-
-type SemanticType	string
-type SemanticDescriptor Datum
 
