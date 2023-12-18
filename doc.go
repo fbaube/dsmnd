@@ -1,28 +1,28 @@
-// Package dsmnd is short for Data semantics and metadata.
-// Nickname "Desmond". It contains constants and structs
-// and other stuff for describing data, data structures,
-// and database schemata.
+// Package dsmnd is short for Data Structure Semantics,
+// Metadata, and Descriptors. Nicknamed "Desmond". It
+// contains constants and structs and other stuff for
+// describing data, data structures, database schemata,
+// and a sort of taxonomy of UI elements. 
 //
-// It should have no dependencies, aside from the stdlib
-// (and maybe some 3rd-party DB stuff).
+// It has no dependencies aside from the stdlib. Conceivably
+// at some point there will be some 3rd-party DB stuff.
 //
-// About naming
+// A digression about naming
 // 
-// All names are allowed, except beginning with "sqlite_".
-// CREATE TABLE "TABLE"("#!@""'☺\", "");
-// You can use keywords ("TABLE"), special characters
-// (""#!@""'☺\"), and even the empty string ("").
+// In principle, ALL names and ALL characters are allowed
+// except beginning with "sqlite_". You can use keywords
+// ("TABLE"), special characters (line noise), and even
+// the empty string ("").
 //
 // If you use brackets or quotes you can use any name
 // and there is no restriction :
 // create table [--This is a_valid.table+name!?] (x int);
 //
-// But table names that don't have brackets around them
-// should be any alphanumeric combination that doesn't
+// But table names that don't have surrounding brackets 
+// should be an alphanumeric combination that does not
 // start with a digit and does not contain any spaces.
-// 
-// You can use underline and $ but you can not use
-// symbols like: + - ? ! * @ % ^ & # = / \ : " '
+// In such case you can use underline and $ but you can 
+// not use symbols like: + - ? ! * @ % ^ & # = / \ : " '
 //
 // SQLite's documentation on identifiers says that square
 // brackets are allowed for compatibility with MS Access
