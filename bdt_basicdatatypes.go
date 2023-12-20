@@ -1,8 +1,14 @@
 package dsmnd
 
+// Datatype can be either a [BasicDatatype] (`BDT_*`) or a
+// [SemanticType] (`SFT_* SCT_*`). We don't normally want to
+// intermix these two, but it is necessary when defining the
+// first field of a [Datum].
+type Datatype string
+
 // === aside: Semantics (for uses, see other files s?t_*.go) ===
 
-type SemanticType	string
+type SemanticType	Datatype
 type SemanticDescriptor Datum
 
 // === this file: Basic types ===
@@ -17,6 +23,7 @@ type SemanticDescriptor Datum
 type SqliteDatatype int
 
 const(
+	SQLITE_ERR     = SqliteDatatype(0)
 	SQLITE_INTEGER = SqliteDatatype(1) // 64-bit signed integer
 	SQLITE_FLOAT   = SqliteDatatype(2) // 64-bit IEEE FP number
 	SQLITE_TEXT    = SqliteDatatype(3) // string; incl JSON 
@@ -37,11 +44,12 @@ const(
 //
 // But in any case see https://sqlite.org/c3ref/c_blob.html
 // .
-type BasicDatatype string
+type BasicDatatype Datatype
 
 // NOTE: These BasicDatatype's _ARE_ USED
 
 const (
+BDT_NIL  = BasicDatatype("nil") 
 BDT_INTG = BasicDatatype("1234") // INT   // SQLITE_INTEGER 1
 BDT_FLOT = BasicDatatype("1.0f") // FLOAT // SQLITE_FLOAT   2
 BDT_TEXT = BasicDatatype("AaZz") // TEXT  // SQLITE_TEXT    3
@@ -57,5 +65,9 @@ BDT_NONE = BasicDatatype("none") // reserved
 
 func (bdt BasicDatatype) S() string {
      return string(bdt)
+}
+
+func (bdt BasicDatatype) DT() Datatype {
+     return Datatype(bdt)
 }
 

@@ -2,50 +2,54 @@ package dsmnd
 
 import "fmt"
 
-// When used as an enum node (ELIST) or value (ENUME), 
-// will need addition of namespace and isSet/hasKids. 
-
-// Datum is a datum descriptor that contains 
-// a storage name (for persistence), a short
-// display name (for users), and a description.
+// Datum is a datum descriptor that contains a
+// data type (a value from one of several sets),
+// a storage name (for when persisted), a short
+// display name (for users), and a freetext
+// description.
 //
-// It can be used to describe any of the following:
-//   - A facet or enumeration
-//   - One value in a facet or enumeration
-//   - An enumeration (set), or a higher node in a
-//     hierarchical structure of facets/enumerations
-//   - A table spec (schema) for a database
-//   - A table spec (schema) as present in a database
-//   - A column spec for a DB table
-//   - A field value in a Go struct
+// NOTE: When used as an enum node (ELIST) or
+// enum value (ENUME), a Datum will need the
+// addition of a namespace and isSet/hasKids. 
+// 
+// A Datum can be used to describe any of the following:
+//  - A table spec (schema) for a database
+//  - A table spec (schema) as present in a database
+//  - A column spec for a DB table
+//  - A field value in a Go struct
+//  - A facet or enumeration
+//  - One value in a facet or enumeration
+//  - An enumeration (set), or a higher node in a
+//    hierarchical structure of facets/enumerations
 //
-// Some use cases (TODO: this needs revising): 
+// Some example use cases (TODO: this needs revising): 
 //
 // An element of an enumeration (example: Language)
-//   - BasicDataType: TEXT ("text")
+//   - DataType: TEXT ("text")
 //   - StorName: "EN", "FR"
 //   - DispName: "English", "French"
 //   - Description: "English (default USA)", "French (default France)"
 //
 // A database table:
 //   - e.g. TableSpec{TABL, "inbatch", "INB", "Batch import of files"}
-//   - BasicDataType: TABL ("tabl")
+//   - DataType: TABL ("tabl")
 //   - StorName: "inbatch" (in SQL "CREATE TABLE")
 //   - DispName: "inb" (when used as a prefix, e.g. "inb_idx"))
 //   - Description: "Input batch of imported files"
 //
 // A database column:
 //   - e.g. ColumnSpec{TEXT, "relfp", "Rel. path", "Rel.FP (from CLI)"}
-//   - BasicDataType: PKEY ("pkey") OOPS, PATH?
+//   - DataType: PKEY ("pkey") OOPS, PATH?
 //   - StorName: "relfp"
 //   - DispName: "Rel. path"
 //   - Description: "Rel.FP (from CLI)"
 //
-// The BasicDataType can be considered optional, but not other fields.
+// The DataType might sometimes be optional, but not other fields.
 //
-// The following discussion (ref: https://www.sqlite.org/datatype3.html)
-// is mostly obsolete now, because we have expanded the set of permissible
-// values for BasicDataType...
+// NOTE: The discussion that follows (ref:
+// https://www.sqlite.org/datatype3.html) is
+// mostly obsolete now, because we have expanded
+// the set of permissible values for [BasicDataType]...
 //
 // The SQLite concepts "storage class" and "affinity" are quite similar.
 // The values for these are "INTEGER", "REAL", "NUMERIC, "TEXT", "BLOB".
@@ -72,7 +76,7 @@ type Datum struct {
 	// BasicDatatype is an SQLite fundamental datatype,
 	// enhanced with Primary Key and Foreign Key. 
 	// TODO: SemanticType (FUTURE).
-	BasicDatatype
+	Datatype // BasicDatatype
 	// StorName is a short unique string token - no 
 	// spaces or punctuation. For robustness we use 
 	// string codes not iota-based integer values, 
@@ -95,5 +99,5 @@ type Datum struct {
 
 func (d Datum) String() string {
 	return fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%s\"",
-		d.BasicDatatype, d.StorName, d.DispName, d.Description)
+		d.Datatype, d.StorName, d.DispName, d.Description)
 }
