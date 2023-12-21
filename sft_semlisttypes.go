@@ -78,7 +78,7 @@ var SemanticListDescriptors = []SemanticListDescriptor{
 {BDT_LIST.DT(), SLT_RLIST.S(), "Rankd list", "List ordered by ranking"},
 {BDT_LIST.DT(), SLT_SLIST.S(), "Seql. list", "List ordered as a sequence"},
 {BDT_LIST.DT(), SLT_ELIST.S(), "Enum. list", "List of enumerated elements"},
-{"enume",       "ENUME", "Enum. item", "Element of enumeration"},
+{"enume",       SLT_ENUME.S(), "Enum. item", "Element of enumeration"},
 {BDT_LIST.DT(), SLT_XLIST.S(), "Excl. list", "List (select one only)"}, // rbn
 {BDT_LIST.DT(), SLT_MLIST.S(), "Mult. list", "List (select multiple)"}, // cbx
 }

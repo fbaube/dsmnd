@@ -22,6 +22,20 @@ func (sft SemanticFieldType) DT() Datatype {
      return Datatype(sft)
 }
 
+func (sft SemanticFieldType) Descriptor() SemanticFieldDescriptor {
+     if sft == "" {
+     	return SemanticFieldDescriptors[0]
+	}
+     return sftMap[sft]
+}
+
+func (sft SemanticFieldType) BasicDatatype() BasicDatatype {
+     if sft == "" {
+     	return BDT_NIL
+	}
+     return BasicDatatype(sft.Descriptor().Datatype)
+}
+
 func SemanticFieldDescriptorByType(sft SemanticFieldType) (SemanticFieldDescriptor, error) { 
     v, ok := sftMap[sft]
     if !ok { return SemanticFieldDescriptors[0],
