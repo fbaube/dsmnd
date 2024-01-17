@@ -51,12 +51,14 @@ func init() {
 }
 
 const(
+	// ONE-OFFS 
 	SFT_NIL   = SemanticFieldType("nil")
         SFT_FLOAT = SemanticFieldType("float")
         SFT_BLOB_ = SemanticFieldType("blob_")
         SFT_NULL_ = SemanticFieldType("null_")
         // INTEGERS (2) (also needs BYTE_, LONG_ ?)
         SFT_INTEG = SemanticFieldType("integ")
+        SFT_COUNT = SemanticFieldType("count")
         SFT_BOOL_ = SemanticFieldType("bool_")
         // TEXTS (8)
         SFT_STRNG = SemanticFieldType("strng")
@@ -71,17 +73,18 @@ const(
         SFT_FONUM = SemanticFieldType("fonum")
         SFT_EMAIL = SemanticFieldType("email")
         SFT_URLIN = SemanticFieldType("urlin")
-        SFT_DATIM = SemanticFieldType("datim") // ISO-8601
         SFT_SEMVR = SemanticFieldType("semvr")
         // KEYS (3)
         SFT_PRKEY = SemanticFieldType("prkey")
         SFT_FRKEY = SemanticFieldType("frkey")
         SFT_CXKEY = SemanticFieldType("cxkey")
-	SFT_DATE_ = SemanticFieldType("date_")
-	SFT_DDWWM = SemanticFieldType("ddwmm")
-	SFT_TIME_ = SemanticFieldType("time_")
-	SFT_SESON = SemanticFieldType("seson")
-	SFT_DYPRT = SemanticFieldType("dyprt")
+	// DATE AND/OR TIME (6) 
+        SFT_DATIM = SemanticFieldType("datim") // ISO-8601 timestamp 
+	SFT_DATE_ = SemanticFieldType("date_") // date only 
+	SFT_DDWWM = SemanticFieldType("ddwmm") // using ISO week number 
+	SFT_TIME_ = SemanticFieldType("time_") // time only (e.g. for recurring) 
+	SFT_SESON = SemanticFieldType("seson") // season 
+	SFT_DYPRT = SemanticFieldType("dyprt") // day part 
 )
 
 // SemanticFieldDescriptor details the semantics of a simple field.
@@ -122,11 +125,12 @@ var SemanticFieldDescriptors = []SemanticFieldDescriptor{
 {BDT_NULL.DT(), SFT_NULL_.S(), "Null", "Generic Not-a-value"}, 
 // INTEGERS (2)
 {BDT_INTG.DT(), SFT_INTEG.S(), "Integer", "Generic integer, size unspecified"},
+{BDT_INTG.DT(), SFT_COUNT.S(), "Count", "Item count (non-negative), size unspecified"},
 {BDT_INTG.DT(), SFT_BOOL_.S(), "Boolean", "Boolean (0|1)"},
 // TEXTS (8)
-{BDT_TEXT.DT(), SFT_STRNG.S(), "String", "Generic string, not text"},
-{BDT_TEXT.DT(), SFT_TOKEN.S(), "Token", "Generic token (no spaces or punc.)"},
-{BDT_TEXT.DT(), SFT_FTEXT.S(), "Free-text", "Generic free-flowing text"},
+{BDT_TEXT.DT(), SFT_STRNG.S(), "String", "Generic string, not readable text"},
+{BDT_TEXT.DT(), SFT_TOKEN.S(), "Token", "Generic token or datum tag (no spaces or punc.)"},
+{BDT_TEXT.DT(), SFT_FTEXT.S(), "Free-text", "Generic free-flowing readable text, format unspecified"},
 {BDT_TEXT.DT(), SFT_MTEXT.S(), "Markdown", "Markdown (or plain) text, incl LwDITA MDITA"},
 {BDT_TEXT.DT(), SFT_JTEXT.S(), "JSON", "JSON content"},
 {BDT_TEXT.DT(), SFT_XTEXT.S(), "XML-text", "XML text such as LwDITA XDITA"},
@@ -136,16 +140,16 @@ var SemanticFieldDescriptors = []SemanticFieldDescriptor{
 {BDT_TEXT.DT(), SFT_FONUM.S(), "Phone-nr.", "Telephone number"},
 {BDT_TEXT.DT(), SFT_EMAIL.S(), "Email", "Email address"},
 {BDT_TEXT.DT(), SFT_URLIN.S(), "URL/URI/URN", "Generic path ID (URL, URI, URN)"},
-{BDT_TEXT.DT(), SFT_DATIM.S(), "Date/Time", "Date and/or time (ISO-8601/RFC-3339)"},
+{BDT_TEXT.DT(), SFT_DATIM.S(), "Date/Time", "Date and/or time (typ. ISO-8601/RFC-3339)"},
 {BDT_TEXT.DT(), SFT_SEMVR.S(), "Sem.ver.nr.", "Semantic version number (x.y.z)"},
 // KEYS (3)
 {BDT_KEYY.DT(), SFT_PRKEY.S(), "Pri.key", "Primary table key (unique, non-NULL, int64"},
 {BDT_KEYY.DT(), SFT_FRKEY.S(), "For.key", "Foreign table key (int64)"},
 {BDT_KEYY.DT(), SFT_CXKEY.S(), "Complex for.key", "Complex for.key (e.g. 1/n to other table)"}, 
 // DYTM/DATETIME (6)
+{BDT_DYTM.DT(), SFT_DATIM.S(), "Date & time", "Timestamp (day+time)"},
 {BDT_DYTM.DT(), SFT_DATE_.S(), "Date", "Date only, no time"},
 {BDT_DYTM.DT(), SFT_DDWWM.S(), "TBD", "Day of week ? Week nr ? Month ?"},
-{BDT_DYTM.DT(), SFT_DATIM.S(), "Date & time", "Timestamp (day+time)"},
 {BDT_DYTM.DT(), SFT_TIME_.S(), "Time", "Time only, no date (recurring ?)"},
 {BDT_DYTM.DT(), SFT_SESON.S(), "Season", "Season (W S M F)"},
 {BDT_DYTM.DT(), SFT_DYPRT.S(), "Daypart", "Part ofo day (N M A E)"},
