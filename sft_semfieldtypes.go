@@ -53,18 +53,19 @@ func init() {
 const(
 	// ONE-OFFS 
 	SFT_NIL   = SemanticFieldType("nil")
+        SFT_BOOL_ = SemanticFieldType("bool_")
         SFT_FLOAT = SemanticFieldType("float")
         SFT_BLOB_ = SemanticFieldType("blob_")
         SFT_NULL_ = SemanticFieldType("null_")
         // INTEGERS (2) (also needs BYTE_, LONG_ ?)
         SFT_INTEG = SemanticFieldType("integ")
         SFT_COUNT = SemanticFieldType("count")
-        SFT_BOOL_ = SemanticFieldType("bool_")
-        // TEXTS (8)
+        // TEXTS (9)
         SFT_STRNG = SemanticFieldType("strng")
         SFT_TOKEN = SemanticFieldType("token")
         SFT_FTEXT = SemanticFieldType("ftext")
         SFT_MTEXT = SemanticFieldType("mtext")
+        SFT_ATEXT = SemanticFieldType("atext")
         SFT_JTEXT = SemanticFieldType("jtext")
         SFT_XTEXT = SemanticFieldType("xtext")
         SFT_HTEXT = SemanticFieldType("htext")
@@ -72,6 +73,7 @@ const(
 	// TEXT-BASED MISC. (5)
         SFT_FONUM = SemanticFieldType("fonum")
         SFT_EMAIL = SemanticFieldType("email")
+        SFT_FPATH = SemanticFieldType("fpath")
         SFT_URLIN = SemanticFieldType("urlin")
         SFT_SEMVR = SemanticFieldType("semvr")
         // KEYS (3)
@@ -119,27 +121,29 @@ type SemanticFieldDescriptor SemanticDescriptor
 // .
 var SemanticFieldDescriptors = []SemanticFieldDescriptor{
 {BDT_NIL.DT(),  SFT_NIL.S(),   "nil", "NOT-FOUND"}, 
-// ONE-OFFS (3) 
+// ONE-OFFS (4) 
 {BDT_FLOT.DT(), SFT_FLOAT.S(), "Float", "Generic FP number, size unspecified"},
 {BDT_BLOB.DT(), SFT_BLOB_.S(), "Blob", "Binary large object (program / data"},
 {BDT_NULL.DT(), SFT_NULL_.S(), "Null", "Generic Not-a-value"}, 
+{BDT_INTG.DT(), SFT_BOOL_.S(), "Boolean", "Boolean (0|1)"},
 // INTEGERS (2)
 {BDT_INTG.DT(), SFT_INTEG.S(), "Integer", "Generic integer, size unspecified"},
 {BDT_INTG.DT(), SFT_COUNT.S(), "Count", "Item count (non-negative), size unspecified"},
-{BDT_INTG.DT(), SFT_BOOL_.S(), "Boolean", "Boolean (0|1)"},
-// TEXTS (8)
+// TEXTS (9)
 {BDT_TEXT.DT(), SFT_STRNG.S(), "String", "Generic string, not readable text"},
 {BDT_TEXT.DT(), SFT_TOKEN.S(), "Token", "Generic token or datum tag (no spaces or punc.)"},
 {BDT_TEXT.DT(), SFT_FTEXT.S(), "Free-text", "Generic free-flowing readable text, format unspecified"},
-{BDT_TEXT.DT(), SFT_MTEXT.S(), "Markdown", "Markdown (or plain) text, incl LwDITA MDITA"},
-{BDT_TEXT.DT(), SFT_JTEXT.S(), "JSON", "JSON content"},
-{BDT_TEXT.DT(), SFT_XTEXT.S(), "XML-text", "XML text such as LwDITA XDITA"},
-{BDT_TEXT.DT(), SFT_HTEXT.S(), "HTML5-text", "HTML[5!] text, incl LwDITA HDITA"},
+{BDT_TEXT.DT(), SFT_JTEXT.S(), "JSON", "JSON text"},
+{BDT_TEXT.DT(), SFT_XTEXT.S(), "XML-text", "XML text (incl fragments)"},
+{BDT_TEXT.DT(), SFT_HTEXT.S(), "HTML5-text", "HTML[5!] text"},
+{BDT_TEXT.DT(), SFT_MTEXT.S(), "Markdown", "Markdown/plaintext, incl LwDITA Ext'd-MDITA"},
+{BDT_TEXT.DT(), SFT_ATEXT.S(), "Asciidoc", "Asciidoc text"},
 {BDT_TEXT.DT(), SFT_MCFMT.S(), "Microformat", "Microformat record"},
-// TEXT-BASED MISC. (5)
+// TEXT-BASED MISC. (6)
 {BDT_TEXT.DT(), SFT_FONUM.S(), "Phone-nr.", "Telephone number"},
 {BDT_TEXT.DT(), SFT_EMAIL.S(), "Email", "Email address"},
-{BDT_TEXT.DT(), SFT_URLIN.S(), "URL/URI/URN", "Generic path ID (URL, URI, URN)"},
+{BDT_TEXT.DT(), SFT_FPATH.S(), "F-path", "Filepath or facet path (tree; slash-separated)"},
+{BDT_TEXT.DT(), SFT_URLIN.S(), "URL/URI/URN", "Generic path ID (URL, URI, URN; nmspc'd)"},
 {BDT_TEXT.DT(), SFT_DATIM.S(), "Date/Time", "Date and/or time (typ. ISO-8601/RFC-3339)"},
 {BDT_TEXT.DT(), SFT_SEMVR.S(), "Sem.ver.nr.", "Semantic version number (x.y.z)"},
 // KEYS (3)
