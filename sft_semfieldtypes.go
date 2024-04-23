@@ -60,6 +60,8 @@ const(
         // INTEGERS (2) (also needs BYTE_, LONG_ ?)
         SFT_INTEG = SemanticFieldType("integ")
         SFT_COUNT = SemanticFieldType("count")
+	SFT_EUPNS = SemanticFieldType("eupns") // EU pennies (eurocents, 0.01€) 
+	SFT_USPNS = SemanticFieldType("uspns") // US pennies (cents, ¢₵, 0.01$)
         // TEXTS (9)
         SFT_STRNG = SemanticFieldType("strng")
         SFT_TOKEN = SemanticFieldType("token")
