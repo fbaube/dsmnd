@@ -19,16 +19,11 @@ type DbColInDb Datum
 type TypeType string 
 
 const(
-	TT_NIL = TypeType("nil")
-	// TT_SQLITE is [SqliteDatatype] 
-        TT_SQLITE TypeType = TypeType("sqlite")
-	// TT_BASIC is [BasicDatatype] 
-	TT_BASIC = TypeType("basic")
-	// TT_SEMFIELD is [SemanticFieldType] 
-	TT_SEMFIELD = TypeType("semfield")
-	// TT_SEMLIST is [SemanticListType]
-	TT_SEMLIST = TypeType("semlist")
-	// TT_SEMCLXN is [SemanticClxnType]
-	TT_SEMCLXN = TypeType("semclxn")
+	TT_NIL     = TypeType("nil")
+        TT_SQLITE  = TypeType("sqlite")   // TT_SQLITE   is [SqliteDatatype] 
+	TT_BASIC   = TypeType("basic")    // TT_BASIC    is [BasicDatatype] 
+	TT_SEMFIELD= TypeType("semfield") // TT_SEMFIELD is [SemanticFieldType] 
+	TT_SEMLIST = TypeType("semlist")  // TT_SEMLIST  is [SemanticListType]
+	TT_SEMCLXN = TypeType("semclxn")  // TT_SEMCLXN  is [SemanticClxnType]
 )
 

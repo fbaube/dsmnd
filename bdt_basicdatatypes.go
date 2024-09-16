@@ -17,7 +17,7 @@ type SemanticDescriptor Datum
 // by & for SQLite, plus the addition of a date-time.
 // See https://sqlite.org/c3ref/c_blob.html
 //
-// There's also complicating factors like
+// Note that there's also complicating factors like
 // NUMERIC (and REAL).
 // . 
 type SqliteDatatype int
@@ -35,12 +35,12 @@ const(
 // BasicDatatype is a string that expands upon the SQLite 
 // datatypes, mainly by adding "key" and "list" and "clxn"
 // (collection).
-//  - Symbol names: "BDT_" + FOUR UPPER CASE letters
-//  - Symbol values: four lower case letters
+//  - Symbol names are `"BDT_"` + FOUR UPPER CASE letters
+//  - Symbol values are four lower case letters
 //  - Lists and Collections are included
 //
 // These are appropriate for describing DB schemas.
-// For more detail tho, use [SemFieldTypes]. 
+// For more detail tho, use a [SemFieldType]. 
 //
 // But in any case see https://sqlite.org/c3ref/c_blob.html
 // .
@@ -59,6 +59,7 @@ BDT_DYTM = BasicDatatype("dytm") // DATETIME SQLYT_DATETIME 6
 BDT_KEYY = BasicDatatype("keyy") // PRIMARY/FOREIGN/OTHER KEY (SQLite "INTEGER")
 BDT_LIST = BasicDatatype("list") // List (simple one-dimensional lists) 
 BDT_CLXN = BasicDatatype("clxn") // Collection (more-complicated data strux)
+BDT_FSYS = BasicDatatype("fsys") // FS entity (details TBD) 
 BDT_OTHR = BasicDatatype("othr") // reserved: expansion 
 BDT_NONE = BasicDatatype("none") // reserved 
 )

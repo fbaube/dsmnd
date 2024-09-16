@@ -10,11 +10,11 @@ import "fmt"
 //
 // NOTE: When used as an enum node (ELIST) or
 // enum value (ENUME), a Datum will need the
-// addition of a namespace and isSet/hasKids. 
+// addition of a namespace and `isSet/hasKids`. 
 // 
 // A Datum can be used to describe any of the following:
-//  - A table spec (schema) for a database
-//  - A table spec (schema) as present in a database
+//  - A table spec (schema) for creating a database
+//  - A table spec (schema) existing (as-is) in a database
 //  - A column spec for a DB table
 //  - A field value in a Go struct
 //  - A facet or enumeration
@@ -67,10 +67,10 @@ import "fmt"
 //
 // This all means that we can basically
 //  1. completely ignore SQLite NUMERIC, SQLite BLOB, and gota BOOL,
-//  2. declare every column to be either "INTG" or "TEXT" (in BasicDataType),
+//  2. declare every column to be either "INTG" or "TEXT" (in [BasicDataType]),
 //  3. but use "INTEGER" (i.e. "KEYY") for a key (primary or foreign), and
-//  4. not worry about "mistakes" like assigning a BLOB (like an image file)
-//     to a TEXT column cos SQLite has got us covered.
+//  4. not worry about "mistakes" like assigning a BLOB (such as image file) 
+//     to a TEXT column - because SQLite has got us covered.
 // .
 type Datum struct {
 	// BasicDatatype is an SQLite fundamental datatype,

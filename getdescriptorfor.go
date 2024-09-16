@@ -1,7 +1,7 @@
 package dsmnd
 
 /*
-Sadly, this does not coimpile. Not yet, anyways. 
+Sadly, this does not compile. Not yet, anyways. 
 func DescriptorFor[T ~string](s T) (TypeType, Datum) {
      // Sadly, neither of these works
      // switch z := s.(type) {

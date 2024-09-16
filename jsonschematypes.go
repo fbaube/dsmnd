@@ -7,21 +7,20 @@ var JsonSchemaBuiltinFormats = []JsonSchemaBuiltinFormat{}
 
 /*
 "date-time": Date and time together, for example, 2018-11-13T20:20:39+00:00.
-"time": Time, for example, 20:20:39+00:00
-"date": Date, for example, 2018-11-13.
-"duration": A duration as defined by the ISO 8601 ABNF for “duration”.
-"email": Internet email address, see RFC 5321, section 4.1.2.
+"time":      Time, for example, 20:20:39+00:00
+"date":      Date, for example, 2018-11-13.
+"duration":  Duration as defined by the ISO 8601 ABNF for “duration”.
+"email":     Internet email address, see RFC 5321, section 4.1.2.
 "idn-email": The internationalized form of an Internet email
-"hostname": Internet host name, see RFC 1123, section 2.1.
+"hostname":  Internet host name, see RFC 1123, section 2.1.
 "idn-hostname": An internationalized Internet host name,
 "ipv4": IPv4 address, according to dotted-quad ABNF syntax
 "ipv6": IPv6 address, as defined in RFC 2373, section 2.2.
 "uuid": A Universally Unique Identifier as defined by RFC 4122.
-"uri": A universal resource identifier (URI), according to RFC3986.
+"uri":  A universal resource identifier (URI), according to RFC3986.
 "uri-reference": A URI Reference (either a URI or a relative-reference),
-"iri": The internationalized equivalent of a “uri”, according to RFC3987.
+"iri":           The internationalized equivalent of a “uri”, per RFC3987.
 "iri-reference": The internationalized equivalent of a “uri-reference”,
-"iri-reference") rather than "uri" (or "iri"). "uri" should
 */
 
 /*

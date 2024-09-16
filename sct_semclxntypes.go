@@ -3,11 +3,11 @@ package dsmnd
 import "errors"
 
 // SemanticClxnType characterizes the semantics of data structures 
-// more complex than simple lists. ENUME is included because it
-// (a) uses a Datum and (b) also can implement the hierarchical
+// that are more complex than simple lists. ENUME is included because 
+// it (a) uses a Datum and (b) also can implement the hierarchical
 // naming scheme for faceted metadata and other enumerations.
-//  - Symbol names: "SCT_" + FIVE UPPER CASE letters
-//  - Symbol values: five lower case letters
+//  - Symbol names are `"SCT_"` + FIVE UPPER CASE letters
+//  - Symbol values are five lower case letters
 //
 // For more information about each field type,
 // see [SemanticClxnDescriptors].

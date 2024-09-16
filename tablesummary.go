@@ -5,9 +5,9 @@ package dsmnd
 // TableSummary sums up a DB table (but not its columns).
 // Field usage is as follows:
 //   - [Datatype]: SCT_TABL
-//   - [StorName]: the name of the table IN THE DB - a "long name"
-//   - [DispName]: a short name (3 ltrs!) for use in building up
+//   - [Datum.StorName]: the name of the table IN THE DB - a "long name"
+//   - [Datum.DispName]: a short name (3 ltrs!) for use in building up
 //     field names (mainly: primary & foreign keys)
-//   - [Description]: long description
+//   - [Datum.Description]: long description
 // .
 type TableSummary Datum

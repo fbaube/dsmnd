@@ -3,8 +3,8 @@ package dsmnd
 import "errors"
 
 // SemanticListType assigns the semantics of a simple list. 
-//  - Symbol names: "SFT_" + FIVE UPPER CASE letters
-//  - Symbol values: five lower case letters
+//  - Symbol names are `"SFT_"` + FIVE UPPER CASE letters
+//  - Symbol values are five lower case letters
 //
 // For more information about each field type,
 // see [SemanticListDescriptors].
@@ -61,11 +61,11 @@ type SemanticListDescriptor SemanticDescriptor
 // SemanticListDescriptors are semantically-meaningful descriptors
 // of simple lists. Descriptor fields:
 //  1. [Datatype] of each type of list is [BDT_LIST] 
-//  2. [StorName]: the internal string value of the list type:
+//  2. [Datum.StorName]: the internal string value of the list type:
 //     FIVE UPPER CASE letters
-//  3. [DispName]: the external (for users) string value of the
+//  3. [Datum.DispName]: the external (for users) string value of the
 //     list type, Capitalized
-//  4. [Description]: Capitalized free text describing the list type
+//  4. [Datum.Description]: Capitalized free text describing the list type
 //
 // ENUME is included because it (a) uses a Datum and 
 // (b) also can implement the hierarchical naming 
