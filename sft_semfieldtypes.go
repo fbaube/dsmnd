@@ -62,7 +62,7 @@ const(
         SFT_COUNT = SemanticFieldType("count")
 	SFT_EUPNS = SemanticFieldType("eupns") // EU pennies (eurocents, 0.01€) 
 	SFT_USPNS = SemanticFieldType("uspns") // US pennies (cents, ¢₵, 0.01$)
-        // TEXTS (9) // Add Bin, Sql, Dirlike 
+        // TEXTS (10) 
         SFT_STRNG = SemanticFieldType("strng")
         SFT_TOKEN = SemanticFieldType("token")
         SFT_FTEXT = SemanticFieldType("ftext")
@@ -72,6 +72,7 @@ const(
         SFT_XTEXT = SemanticFieldType("xtext")
         SFT_HTEXT = SemanticFieldType("htext")
         SFT_MCFMT = SemanticFieldType("mcfmt")
+        SFT_QTEXT = SemanticFieldType("qtext")
 	// TEXT-BASED MISC. (5)
         SFT_FONUM = SemanticFieldType("fonum")
         SFT_EMAIL = SemanticFieldType("email")
@@ -138,7 +139,7 @@ var SemanticFieldDescriptors = []SemanticFieldDescriptor{
 {BDT_INTG.DT(), SFT_COUNT.S(), "Count", "Item count (non-neg.), size unspecified"},
 {BDT_INTG.DT(), SFT_EUPNS.S(), "Eurocents", "EUR/100 0.01€"}, 
 {BDT_INTG.DT(), SFT_USPNS.S(), "USA cents", "UDS/100 0.01$"},
-// TEXTS (9)
+// TEXTS (10)
 {BDT_TEXT.DT(), SFT_STRNG.S(), "String", "Generic string, not readable text"},
 {BDT_TEXT.DT(), SFT_TOKEN.S(), "Token", "Generic token or datum tag (no spaces or punc.)"},
 {BDT_TEXT.DT(), SFT_FTEXT.S(), "Free-text", "Generic free-flowing readable text, format unspecified"},
@@ -148,6 +149,7 @@ var SemanticFieldDescriptors = []SemanticFieldDescriptor{
 {BDT_TEXT.DT(), SFT_MTEXT.S(), "Markdown", "Markdown/plaintext, incl LwDITA Ext'd-MDITA"},
 {BDT_TEXT.DT(), SFT_ATEXT.S(), "Asciidoc", "Asciidoc text"},
 {BDT_TEXT.DT(), SFT_MCFMT.S(), "Microformat", "Microformat record"},
+{BDT_TEXT.DT(), SFT_QTEXT.S(), "SQL", "SQL (dialect TBS)"},
 // TEXT-BASED MISC. (5)
 {BDT_TEXT.DT(), SFT_FONUM.S(), "Phone-nr.", "Telephone number"},
 {BDT_TEXT.DT(), SFT_EMAIL.S(), "Email", "Email address"},
