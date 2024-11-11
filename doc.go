@@ -1,11 +1,17 @@
 // Package dsmnd is short for Data Structure Semantics,
 // Metadata, and Descriptors. Nicknamed "Desmond". It
 // contains constants and structs and other materials 
-// for describing data, data structures, database
-// schemata, and a sort of taxonomy of UI elements. 
+// for describing a variety of items:
+//  - data types
+//  - data enumeration types and values 
+//  - data structures
+//  - database schemata
+//  - a (sort of) taxonomy of UI elements 
 //
 // It has no dependencies aside from the stdlib. 
 //
+// (The package description ends here.)
+// 
 // A digression about naming, vis-à-vis SQLite 
 // 
 // In principle, ALL names and ALL characters are allowed

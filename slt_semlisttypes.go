@@ -39,6 +39,7 @@ const(
 	SLT_NIL   = SemanticListType("nil")
         SLT_OLIST = SemanticListType("olist")
         SLT_ULIST = SemanticListType("ulist")
+        SLT_DLIST = SemanticListType("dlist")
         SLT_RLIST = SemanticListType("rlist")
         SLT_SLIST = SemanticListType("slist")
         SLT_ELIST = SemanticListType("elist")
@@ -75,6 +76,7 @@ var SemanticListDescriptors = []SemanticListDescriptor{
 {BDT_NIL.DT(),  SLT_NIL.S(),   "nil", "NOT FOUND"},
 {BDT_LIST.DT(), SLT_OLIST.S(), "Ord'd list", "Generic ordered list"},
 {BDT_LIST.DT(), SLT_ULIST.S(), "Unord list", "Generic unordered list"},
+{BDT_LIST.DT(), SLT_DLIST.S(), "Def'n list", "Generic definition list"},
 {BDT_LIST.DT(), SLT_RLIST.S(), "Rankd list", "List ordered by ranking"},
 {BDT_LIST.DT(), SLT_SLIST.S(), "Seql. list", "List ordered as a sequence"},
 {BDT_LIST.DT(), SLT_ELIST.S(), "Enum. list", "List of enumerated elements"},

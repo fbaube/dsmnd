@@ -1,0 +1,92 @@
+<html>
+  <body>
+    <a href="https://hackage.haskell.org/package/pandoc-types-1.23.1/docs/Text-Pandoc-Definition.html"> Definitions: </a>
+
+<table border="1">
+  <tr>
+    <td> PBT_TEXT </td>
+    <td> Plain [Inline] </td>
+    <td> Plain text, not a paragraph </td>
+  </tr>
+  <tr>
+    <td> PBT_PARA </td>
+    <td> Para [Inline] </td>
+    <td> Paragraph </td> 
+  </tr>
+  <tr>
+    <td> PBT_LINS </td>
+    <td> LineBlock [[Inline]] </td>
+    <td> Multiple non-breaking lines </td> 
+  </tr>
+  <tr>
+    <td> PBT_CODE </td>
+    <td> CodeBlock Attr Text </td>
+    <td> Code block (literal) with attributes </td>
+  </tr>
+  <tr>
+    <td> PBT_RAW </td>
+    <td> RawBlock Format Text </td>
+    <td> Raw block </td>
+  </tr>
+  <tr>
+    <td> PBT_QUOT </td>
+    <td> BlockQuote [Block] </td>
+    <td> Block quote (list of blocks) </td> 
+  </tr>
+  <tr>
+    <td> PBT_OL </td>
+    <td> OrderedList ListAttrs [[Block]] </td>
+    <td> Ordered list (attributes + a list of items, each a list of blocks) </td> 
+  </tr>
+  <tr>
+    <td> PBT_UL </td>
+    <td> BulletList [[Block]] </td>
+    <td> Bullet list (list of items, each a list of blocks) </td> 
+  </tr>
+  <tr>
+    <td> PBT_DL </td>
+    <td> DefnList [([Inline], [[Block]])] </td>
+    <td> Definition list: pairs: term (a list of inlines) + 1+ definitions (each a list of blocks) </td> 
+  </tr>
+  <tr>
+    <td> PBT_HDR </td>
+    <td> Header Int Attr [Inline] </td>
+    <td> Header - level (integer) and text (inlines) </td> 
+  </tr>
+  <tr>
+    <td> PBT_HR </td>
+    <td> HorizontalRule </td>
+    <td> Horizontal rule </td> 
+  </tr>
+  <tr>
+    <td> PBT_TBL </td>
+    <td> Table Attr Caption [ColSpec] <br/> TableHead [TableBody] TableFoot </td>
+    <td> (a) Table, with attributes, caption, optional short caption, column alignments and <br/> widths (required), table head, table bodies, and table foot <br/> (b) Table w [Inline] [Alignment] [Double] [TableCell] [[TableCell]] <br/> (c) Table, with caption, column alignments, relative column widths (0 = default), <br/> column headers (each a list of blocks), and rows (each a list of lists of blocks) </td> 
+  </tr>
+  <tr>
+    <td> PBT_FIG </td>
+    <td> Figure Attr Caption [Block] </td>
+    <td> Figure, with attributes, caption, and content (list of blocks) </td> 
+  </tr>
+  <tr>
+    <td> PBT_DIV </td>
+    <td> Div Attr [Block] </td>
+    <td> Generic block container with attributes </td> 
+  </tr>
+</table>
+
+<p> data Cell Source # :: A table cell </p> 
+
+<p> Constructor: Cell Attr Alignment RowSpan ColSpan [Block] </p> 
+
+https://hackage.haskell.org/package/pandoc-types-1.10/docs/src/Text-Pandoc-Definition.html
+
+<p> Alignment of a table column <br/>
+data Alignment = AlignLeft | AlignRight | AlignCenter | AlignDefault </p> 
+
+<p> Table cells are list of Blocks <br/>
+type TableCell = [Block] </p>
+
+<p> Formats for raw blocks <br/>
+type Format = String </p>
+

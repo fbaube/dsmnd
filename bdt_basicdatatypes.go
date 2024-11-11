@@ -1,15 +1,20 @@
 package dsmnd
 
-// Datatype can be either a [BasicDatatype] (`BDT_*`) or a
-// [SemanticType] (`SFT_* SCT_*`). We don't normally want to
-// intermix these two, but it is necessary when defining the
-// first field of a [Datum].
+// Datatype can be a [BasicDatatype] (`BDT_*`) or a [SemanticType]
+// (`SFT_* SCT_*`) or a [PandocType] (`PdcXXX_*`). We'd rather not 
+// intermix these, but it is unavoidable when defining the first
+// field of a [Datum].
 type Datatype string
 
-// === aside: Semantics (for uses, see other files s?t_*.go) ===
+// === Semantics: for uses, see files s?t_sem*types.go ===
 
 type SemanticType	Datatype
 type SemanticDescriptor Datum
+
+// === Pandoc: for uses, see files p?t_pandoc*types.go ===
+
+type PandocType	      Datatype
+type PandocDescriptor Datum
 
 // === this file: Basic types ===
 

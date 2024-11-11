@@ -1,0 +1,144 @@
+<html>
+  <body>
+    <a href="https://hackage.haskell.org/package/pandoc-types-1.23.1/docs/Text-Pandoc-Definition.html"> Definitions: </a> 
+
+<p> data Inline Source # :: Inline elements. Constructors: </p>
+
+<table border="1">
+  <tr>
+    <td> Inl_TEXT </td> 
+    <td> Str Text </td>
+    <td> Text (string) </td>
+  </tr>
+  <tr>
+    <td> Inl_EMPH </td>
+    <td> Emph [Inline] </td>
+    <td> Emphasized text (list of inlines) </td>
+  </tr>
+  <tr> 
+    <td> Inl_UNDRLN </td>
+    <td> Underline [Inline] </td>
+    <td> Underlined text (list of inlines) </td>
+  </tr>
+  <tr>
+    <td> Inl_STRONG </td>
+    <td> Strong [Inline] </td>
+    <td> Strongly emphasized text (list of inlines) </td>
+  </tr>
+  <tr>
+    <td> Inl_STRIKE </td>
+    <td> Strikeout [Inline] </td>
+    <td> Strikeout text (list of inlines) </td>
+  </tr>
+  <tr>
+    <td> Inl_SUPER </td>
+    <td> Superscript [Inline] </td>
+    <td> Superscripted text (list of inlines) </td>
+  </tr>
+  <tr>
+    <td> Inl_SUB </td>
+    <td> Subscript [Inline] </td>
+    <td> Subscripted text (list of inlines) </td>
+  </tr>
+  <tr>
+    <td> Inl_SMLCAP </td>
+    <td> SmallCaps [Inline] </td>
+    <td> Small caps text (list of inlines) </td>
+  </tr>
+  <tr>
+    <td> Inl_QUOTE </td>
+    <td> Quoted QuoteType [Inline] </td>
+    <td> Quoted text (list of inlines) </td>
+  </tr>
+  <tr>
+    <td> Inl_CITE </td> 
+    <td> Cite [Citation] [Inline] </td>
+    <td> Citation (list of inlines) </td>
+  </tr>
+  <tr>
+    <td> Inl_CODE </td>
+    <td> Code Attr Text </td>
+    <td> Inline code (literal) </td>
+  </tr>
+  <tr>
+    <td> Inl_SPACE </td>
+    <td> Space </td>
+    <td> Inter-word space </td>
+  </tr>
+  <tr>
+    <td> Inl_SFTBRK </td>
+    <td> SoftBreak </td>
+    <td> Soft line break </td>
+  </tr>
+  <tr>
+    <td> Inl_LINBRK </td>
+    <td> LineBreak </td>
+    <td> Hard line break </td>
+  </tr>
+  <tr>
+    <td> Inl_MATH </td>
+    <td> Math MathType Text </td>
+    <td> TeX math (literal) </td>
+  </tr>
+  <tr>
+    <td> Inl_RAW </td>
+    <td> RawInline Format Text </td>
+    <td> Raw inline </td>
+  </tr>
+  <tr>
+    <td> Inl_LINK </td>
+    <td> Link Attr [Inline] Target </td>
+    <td> Hyperlink: alt text (list of inlines), target </td>
+  </tr>
+  <tr>
+    <td> Inl_IMAGE </td>
+    <td> Image Attr [Inline] Target </td>
+    <td> Image: alt text (list of inlines), target </td>
+  </tr>
+  <tr>
+    <td> Inl_NOTE </td>
+    <td> Note [Block] </td>
+    <td> Footnote or endnote </td>
+  </tr>
+  <tr>
+    <td> Inl_SPAN </td>
+    <td> Span Attr [Inline] </td>
+    <td> Generic inline container with attributes </td>
+  </tr>
+</table>
+
+<p> type ListAttributes = (Int, ListNumberStyle, ListNumberDelim) <br/>
+List attributes. The Int element is the start number of the list. </p>
+
+<p> data ListNumberStyle <br/>
+Style of list numbers. <br/>
+DefaultStyle, Example, Decimal, <br/>
+LowerRoman, UpperRoman, LowerAlpha, UpperAlpha </p>
+
+<p> data ListNumberDelim <br/>
+Delimiter of list numbers. <br/>
+DefaultDelim, Period, OneParen, TwoParens </p> 
+
+<p> data Alignment <br/>
+Alignment of a table column. <br/>
+AlignLeft, AlignRight, AlignCenter, AlignDefault </p>
+
+<p> data ColWidth <br/>
+The width of a table column, as a percentage of the text width. <br/>
+ColWidth (Double), ColWidthDefault </p>
+
+<p> type ColSpec = (Alignment, ColWidth) <br/>
+The specification for a single table column. </p>
+
+<p> data QuoteType <br/>
+Type of quotation marks to use in Quoted inline. <br/>
+SingleQuote, DoubleQuote </p>
+
+<p> Link target (URL, title). <br/>
+type Target = (String, String) </p>
+
+<p> Type of math element (display or inline). <br/>
+data MathType = DisplayMath | InlineMath </p>
+
+https://hackage.haskell.org/package/pandoc-types-1.10/docs/src/Text-Pandoc-Definition.html
+
