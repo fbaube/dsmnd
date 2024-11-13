@@ -76,20 +76,24 @@ var PandocBlockDescriptors = []PandocBlockDescriptor{
 {BDT_TEXT.DT(), PBT_FIG.S(), "Fig", "Figure, with attributes, caption, and content (list of blocks)"},
 {BDT_TEXT.DT(), PBT_DIV.S(), "Div", "Generic block(s) container with attributes"},
 }
-/*
-<p> data Cell Source # :: A table cell </p> 
 
-<p> Constructor: Cell Attr Alignment RowSpan ColSpan [Block] </p> 
+type PdcTblCell struct {
+     // Cell Attr Alignment RowSpan ColSpan [Block]
+     PdcTblCellAlnmt
+     rowSpan, colSpan int
+     }
 
-https://hackage.haskell.org/package/pandoc-types-1.10/docs/src/Text-Pandoc-Definition.html
+// https://hackage.haskell.org/package/pandoc-types-1.10/docs/src/Text-Pandoc-Definition.html
 
-<p> Alignment of a table column <br/>
-data Alignment = AlignLeft | AlignRight | AlignCenter | AlignDefault </p> 
+// Alignment of a table column 
+type PdcTblCellAlnmt string
+var  PdcTblCellAlnmts = []PdcTblCellAlnmt {
+	"AlignLeft", "AlignRight", "AlignCenter", "AlignDefault", 
+	}
 
-<p> Table cells are list of Blocks <br/>
-type TableCell = [Block] </p>
+// Table cells [contents] are list of Blocks 
+// type TableCell = [Block] 
 
-<p> Formats for raw blocks <br/>
-type Format = String </p>
+// Formats for raw blocks 
+// type Format = String 
 
-*/
