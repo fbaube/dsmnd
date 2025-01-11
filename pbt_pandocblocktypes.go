@@ -7,6 +7,9 @@ import "errors"
 //
 // For more information about each field type,
 // see [PandocBlockDescriptors].
+//
+// These values should be compared to the "Node" values for the Tiptap
+// editor, documented at https://tiptap.dev/docs/editor/extensions/nodes
 // .
 type PandocBlockType PandocType
 
@@ -36,6 +39,14 @@ func init() {
 
 // PandocBlockDescriptor is TBS.
 type PandocBlockDescriptor SemanticDescriptor
+
+// Tiptap https://tiptap.dev/docs/editor/extensions/nodes
+// Blockquote BulletList CodeBlock CodeBlock:LowLight
+// HardBreak Heading HorizontalRule Image ListItem
+// Mention OrderedList Paragraph Table TableCell
+// TableHeader TableRow TaskItem TaskList Text 
+// PRO: Details DetailsContent DetailsSummary Emoji
+// Also: Document 
 
 const(
     PBT_NIL  = PandocBlockType("nil")

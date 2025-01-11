@@ -7,6 +7,9 @@ import "errors"
 //
 // For more information about each field type,
 // see [PandocInlineDescriptors].
+//
+// These values should be compared to the "Mark" values for the Tiptap
+// editor, documented at https://tiptap.dev/docs/editor/extensions/marks
 // .
 type PandocInlineType PandocType
 
@@ -36,6 +39,16 @@ func init() {
 
 // PandocInlineDescriptor is TBS.
 type PandocInlineDescriptor SemanticDescriptor
+
+// Tiptap https://tiptap.dev/docs/editor/extensions/nodes
+// Bold Code Highlight Italic Link Strike Subscript
+// Superscript TextStyle Underline
+
+// TextStyle "This mark renders a <span> HTML tag and enables you to 
+// add a list of styling related attributes, for example font-family,
+// font-size, or color. The extension doesn’t add any styling attri-
+// bute by default, but other extensions use it as the foundation,
+// for example FontFamily or Color.
 
 const(
     PIT_NIL  = PandocInlineType("nil")
