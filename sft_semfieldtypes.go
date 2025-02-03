@@ -73,6 +73,7 @@ const(
         SFT_HTEXT = SemanticFieldType("htext")
         SFT_MCFMT = SemanticFieldType("mcfmt")
         SFT_QTEXT = SemanticFieldType("qtext")
+        SFT_0TEXT = SemanticFieldType("0text")
 	// TEXT-BASED MISC. (5)
         SFT_FONUM = SemanticFieldType("fonum")
         SFT_EMAIL = SemanticFieldType("email")
@@ -150,6 +151,7 @@ var SemanticFieldDescriptors = []SemanticFieldDescriptor{
 {BDT_TEXT.DT(), SFT_ATEXT.S(), "Asciidoc", "Asciidoc text"},
 {BDT_TEXT.DT(), SFT_MCFMT.S(), "Microformat", "Microformat record"},
 {BDT_TEXT.DT(), SFT_QTEXT.S(), "SQL", "SQL (dialect TBS)"},
+{BDT_TEXT.DT(), SFT_0TEXT.S(), "None/tiny", "None or little"},
 // TEXT-BASED MISC. (5)
 {BDT_TEXT.DT(), SFT_FONUM.S(), "Phone-nr.", "Telephone number"},
 {BDT_TEXT.DT(), SFT_EMAIL.S(), "Email", "Email address"},
