@@ -5,7 +5,7 @@ package dsmnd
 // Currently, go-sqlite3 supports the following data types:
 //
 //   +------------------------------+
-//   |go        | sqlite3           |
+//   |go     ==>  sqlite3           |
 //   |----------|-------------------|
 //   |nil       | null              |
 //   |int       | integer           |
