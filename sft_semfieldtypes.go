@@ -170,8 +170,8 @@ var SemanticFieldDescriptors = []SemanticFieldDescriptor{
 {BDT_DYTM.DT(), SFT_SESON.S(), "Season", "Season (W S M F)"},
 {BDT_DYTM.DT(), SFT_DYPRT.S(), "Daypart", "Part ofo day (N M A E)"},
 // FSYS: FILE SYSTEM ITEMS (4) 
-{BDT_FSYS.DT(), SFT_FSDIR.S(), "Dir", "FS directory (unord|ord)"}, 
-{BDT_FSYS.DT(), SFT_FSFIL.S(), "File", "FS file (contentful)"}, 
+{BDT_FSYS.DT(), SFT_FSDIR.S(), "Dir/", "FS directory (unord|ord)"}, 
+{BDT_FSYS.DT(), SFT_FSFIL.S(), "File", "FS file (can content)"}, 
 {BDT_FSYS.DT(), SFT_FSYML.S(), "SymL", "FS symbolic link"},
-{BDT_FSYS.DT(), SFT_FSOTH.S(), "Other", "FS other (pipes, etc.)"},
+{BDT_FSYS.DT(), SFT_FSOTH.S(), "Misc", "FS misc. other (pipes, etc.)"},
 }
