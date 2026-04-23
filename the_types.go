@@ -7,6 +7,10 @@ const (
 	DB_SQLite DB_type = "sqlite"
 )
 
+// TODO:
+// DIALECT is SQLite or Other
+// IMPLEM  is NATIVE (i.e. the autoritative "C") or WASM or RUST 
+
 // DbColInDb describes a column as-is in the DB (as obtained via
 // reflection), and has a slot to include the value (as a string).
 // Used only in utils/repo/sqlite/meta_table.go

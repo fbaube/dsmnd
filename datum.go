@@ -2,19 +2,20 @@ package dsmnd
 
 import "fmt"
 
-// Datum is a datum descriptor that contains a
-// data type (a value from one of several sets),
-// a storage name (for when persisted), a short
-// display name (for users), and a freetext
-// description.
+// Datum is a descriptor for a single item
+// (i.e. piece) of data,¨and comprises:
+//  - a data type (a value from one of several sets)
+//  - a string value used for storage (when persisted)
+//  - a short display name (for users)
+//  - a freetext description 
 //
 // NOTE: When used as an enum node (ELIST) or
 // enum value (ENUME), a Datum will need the
 // addition of a namespace and `isSet/hasKids`. 
 // 
 // A Datum can be used to describe any of the following:
-//  - A table spec (schema) for creating a database
-//  - A table spec (schema) existing (as-is) in a database
+//  - A table spec (i.e. schema) for creating a database
+//  - A table spec (i.e. schema) existing (as-is) in a database
 //  - A column spec for a DB table
 //  - A field value in a Go struct
 //  - A facet or enumeration
@@ -70,17 +71,19 @@ import "fmt"
 //  2. declare every column to be either "INTG" or "TEXT" (in [BasicDataType]),
 //  3. but use "INTEGER" (i.e. "KEYY") for a key (primary or foreign), and
 //  4. not worry about "mistakes" like assigning a BLOB (such as image file) 
-//     to a TEXT column - because SQLite has got us covered.
+//     to a TEXT column - because SQLite has got us covered (as long as we
+//     do nto define a table to be STRICT). 
 // .
 type Datum struct {
 	// BasicDatatype is an SQLite fundamental datatype,
 	// enhanced with Primary Key and Foreign Key. 
 	// TODO: SemanticType (FUTURE).
 	Datatype // BasicDatatype
-	// StorName is a short unique string token - no 
-	// spaces or punctuation. For robustness we use 
-	// string codes not iota-based integer values, 
-	// because values based on iota could change.
+	// StorName is a short unique string token - no spaces or
+	// punctuation. For robustness in the face of data schemes
+	// that might evolve over time, we use string codes rather
+	// than iota-based integer values, because values based on 
+	// iota could change - breaking persistence. 
 	//  1) When a Datum describes a DB item (table or 
 	//     column or row's column value), StorName is 
 	//     the actual name of the DB field or table, 
