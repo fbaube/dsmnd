@@ -2,8 +2,9 @@ package dsmnd
 
 import "errors"
 
-// SemanticFieldType assigns the semantics of a simple field.
-// Semantically-based field validation is desirable but TBD.
+// SemanticFieldType (SFT_*) assigns the semantics of a
+// simple field (there's a lot of them). Semantically-based
+// field validation is desirable but TBD.
 //  - Symbol names: "SFT_" + FIVE UPPER CASE letters
 //  - Symbol values: five lower case alphanumeric 
 //

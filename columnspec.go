@@ -15,9 +15,11 @@ import "fmt"
 //     NOTE: For PKEY or FKEY, is this authoritative ? There
 //     could be multiple unique indices, so maybe it should be.
 //   - [Datum.DispName]: short description.
-//     NOTE the exception that for FKEY, this is the name of the ref'd DB table.
+//     NOTE the exception that for FKEY, this 
+//     is the name of the ref'd DB table.
 //   - [Datum.Description]: long description.
-//     NOTE that for FKEY, this describes the purpose+function of the ref.
+//     NOTE that for FKEY, this describes the
+//     purpose+function of the ref.
 //
 // ColumnSpec's are useful in at least three situations:
 //   - To generate CREATE TABLE statements

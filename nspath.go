@@ -3,7 +3,7 @@ package dsmnd
 // NSPath is pretty generic and can represent just about anything.
 // Examples:
 //   - Imported file: batch nr + abs/rel.path
-//   - Disk file: PC FQN + abs.pah
+//   - Disk file: PC FQN + abs.path
 //   - Facet value: facet FQN + hiercal path
 //
 // .

@@ -18,8 +18,10 @@ type PandocDescriptor Datum
 
 // === this file: Basic types ===
 
-// SqliteDatatype is one of the five basic ones defined
-// by & for SQLite, plus the addition of a date-time.
+// SqliteDatatype (SQLITE_*) is one of the five defined by 
+// and for SQLite (SQLITE_... INTEGER FLOAT TEXT BLOB NULL)
+// plus the addition of DATETIME and ERR.
+// 
 // See https://sqlite.org/c3ref/c_blob.html
 //
 // Note that there's also complicating factors like
@@ -37,10 +39,10 @@ const(
 	SQLYT_DATETIME = SqliteDatatype(6) // dusnt exist, but should 
 )
 
-// BasicDatatype is a string that expands upon the SQLite 
-// datatypes, mainly by adding "key" and "list" and "clxn"
-// (collection).
-//  - Symbol names are `"BDT_"` + FOUR UPPER CASE letters
+// BasicDatatype (BDT_*) is a string that expands upon 
+// the handful of SQLite datatypes, mainly by adding 
+// BDT_... KEY LIST CLXN (collection) FSYS OTHR. 
+//  - Symbol names are `"BDT_"` + FOUR U.C. letters
 //  - Symbol values are four lower case letters
 //  - Lists and Collections are included
 //

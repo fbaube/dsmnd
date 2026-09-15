@@ -2,8 +2,9 @@ package dsmnd
 
 import "errors"
 
-// SemanticListType assigns the semantics of a simple list. 
-//  - Symbol names are `"SFT_"` + FIVE UPPER CASE letters
+// SemanticListType (SLT_*) assigns the semantics 
+// of a simple list (SLT_... O U D R S E X M). 
+//  - Symbol names are `"SFT_"` + FIVE U.C. letters
 //  - Symbol values are five lower case letters
 //
 // For more information about each field type,
