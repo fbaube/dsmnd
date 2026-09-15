@@ -17,7 +17,8 @@ const (
 // . 
 type DbColInDb Datum
 
-// TypeType enumerates the basic types defined in this package.
+// TypeType (TT_*) enumerates the basic types defined in this package
+// (TT_... SQLITE BASIC SEMFIELD SEMLIST SEMCLXN PDCBLCK PDCINLN).
 // [Datum] is not in this list.
 // . 
 type TypeType string 
@@ -29,5 +30,7 @@ const(
 	TT_SEMFIELD= TypeType("semfield") // TT_SEMFIELD is [SemanticFieldType] 
 	TT_SEMLIST = TypeType("semlist")  // TT_SEMLIST  is [SemanticListType]
 	TT_SEMCLXN = TypeType("semclxn")  // TT_SEMCLXN  is [SemanticClxnType]
+	TT_PDCBLOCK= TypeType("pdcblock") // TT_PDCBLOCK is [PandocBlockType]
+	TT_PDCINLN = TypeType("pdcinln")  // TT_PDCINLN  is [PandocInlineType]
 )
 
